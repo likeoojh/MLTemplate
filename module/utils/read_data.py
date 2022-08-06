@@ -1,3 +1,4 @@
+from lib2to3.pgen2.grammar import _DFA
 import os
 from typing import Dict, Optional
 from datetime import timedelta, datetime
@@ -43,9 +44,9 @@ def read_data(
     """
     _inputs_hash = object_hash(inputs)
     _cached_filename = f"{_inputs_hash}.pickle"
-    _load_check = _load_check(_cached_filename)
-    if _load_check is None:
+    df = _read_check(_cached_filename)
+    if df is None:
         ## read logic
-        return 
+        return df
     else:
-        return _load_check
+        return df
