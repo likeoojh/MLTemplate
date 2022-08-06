@@ -1,4 +1,5 @@
 .idea/
+.cred/
 .local/
 .cache/
 __pycache__/
