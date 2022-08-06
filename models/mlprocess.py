@@ -27,17 +27,17 @@ class MLProcess:
         **kwargs,
     ) -> Callable:
         return None
-    
+
     def _prediction(
         self,
         inputs,
         **kwargs,
     ) -> pd.DataFrame:
         return None
-    
+
     def run(
         self,
-        x: pd.DataFrame, 
+        x: pd.DataFrame,
         y: Union[pd.Series, None],
     ) -> Tuple[pd.DataFrame, pd.DataFrame, Callable]:
         _x = self._feature_engineering(x)
@@ -48,8 +48,8 @@ class MLProcess:
 
 if __name__ == "__main__":
     mlprocess = MLProcess(
-        fe_input = {},
-        tr_input = {},
-        pr_input = {},
+        fe_input={},
+        tr_input={},
+        pr_input={},
     )
     mlprocess.run()

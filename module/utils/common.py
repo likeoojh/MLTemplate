@@ -7,7 +7,7 @@ import pickle
 
 
 def normalize_str(
-    inputs: str, 
+    inputs: str,
     type: str = "NFD",
 ) -> str:
     """
@@ -27,7 +27,7 @@ def normalize_str(
 
 
 def normalize_list(
-    params: Optional[List]
+    params: Optional[List],
 ) -> List:
     """
     Normalize string in each element of input list

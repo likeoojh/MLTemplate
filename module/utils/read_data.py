@@ -1,9 +1,5 @@
-from lib2to3.pgen2.grammar import _DFA
 import os
 from typing import Dict, Optional
-from datetime import timedelta, datetime
-
-import numpy as np
 import pandas as pd
 import pickle
 from module.utils.common import object_hash
@@ -33,7 +29,7 @@ def _read_check(
 
 
 def read_data(
-    inputs: Dict
+    inputs: Dict,
 ) -> pd.DataFrame:
     """
     Load data example
