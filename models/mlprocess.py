@@ -25,7 +25,7 @@ class MLProcess:
         self.pr_input = pr_input
 
     def _feature_engineering(
-        self,
+        self, 
         inputs: pd.DataFrame,
     ) -> pd.DataFrame:
         """
@@ -38,23 +38,23 @@ class MLProcess:
         return None
 
     def _training(
-        self,
-        inputs,
-        output,
+        self, 
+        inputs: pd.DataFrame, 
+        output: pd.Series,
     ) -> Callable:
         """
         Train model for given inputs and output
         Args:
             inputs (pd.DataFrame): train dataset
-            output (pd.DataFrame): train output
+            output (pd.Series): train output
         Returns:
             Callable: model object
         """
         return None
 
     def _prediction(
-        self,
-        inputs,
+        self, 
+        inputs: pd.DataFrame,
     ) -> pd.Series:
         """
         Predict for given inputs including new data
@@ -66,7 +66,7 @@ class MLProcess:
         return None
 
     def fit(
-        self,
+        self, 
         inputs: pd.DataFrame,
         output: pd.Series,
     ) -> Tuple[pd.DataFrame, pd.Series, Callable]:
@@ -79,10 +79,7 @@ class MLProcess:
             (pd.DataFrmae, pd.Series, Callable): transformed data, predicted value, model object
         """
         _x = self._feature_engineering(inputs=inputs)
-        _mdl = self._training(
-            inputs=_x,
-            output=output,
-        )
+        _mdl = self._training(inputs=_x, output=output)
         _y = self._prediction(inputs=_x)
         self._x = _x
         self._mdl = _mdl
@@ -90,7 +87,7 @@ class MLProcess:
         return _x, _y, _mdl
 
     def predict(
-        self,
+        self, 
         inputs: pd.DataFrame,
     ) -> pd.Series:
         """
@@ -106,10 +103,6 @@ class MLProcess:
 
 
 if __name__ == "__main__":
-    mlprocess = MLProcess(
-        fe_input={},
-        tr_input={},
-        pr_input={},
-    )
+    mlprocess = MLProcess(fe_input={}, tr_input={}, pr_input={},)
     mlprocess.fit(x=None, y=None)
     mlprocess.predict(x=None)

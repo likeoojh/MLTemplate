@@ -6,10 +6,7 @@ import re
 import pickle
 
 
-def normalize_str(
-    inputs: str,
-    type: str = "NFD",
-) -> str:
+def normalize_str(inputs: str, type: str = "NFD") -> str:
     """
     Normalize string with NFD
     Change non-alphanumeric `\W == [^a-zA-Z0-9_]` into `_`
@@ -26,9 +23,7 @@ def normalize_str(
     return normalize_inputs
 
 
-def normalize_list(
-    params: Optional[List],
-) -> List:
+def normalize_list(params: Optional[List]) -> List:
     """
     Normalize string in each element of input list
     Args:
@@ -42,9 +37,7 @@ def normalize_list(
         return [normalize_str(col) for col in params]
 
 
-def object_hash(
-    object: Dict[Any, Any],
-) -> str:
+def object_hash(object: Dict[Any, Any]) -> str:
     """
     Hash object with MD5
     Args:

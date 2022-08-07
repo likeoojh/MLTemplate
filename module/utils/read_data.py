@@ -6,8 +6,7 @@ from module.utils.common import object_hash
 
 
 def _read_check(
-    cached_filename: str,
-    cache_path: str = ".cache/",
+    cached_filename: str, cache_path: str = ".cache/",
 ) -> Optional[pd.DataFrame]:
     """
     Load dataset from Bigquery with considering cached_filename
@@ -28,9 +27,7 @@ def _read_check(
 
 
 def _read_logic(
-    read_inputs: Dict,
-    cached_filename: str,
-    cache_path: str = ".cache/",
+    read_inputs: Dict, cached_filename: str, cache_path: str = ".cache/",
 ) -> Dict[str, pd.DataFrame]:
     """
     Read csv
@@ -49,9 +46,7 @@ def _read_logic(
     return df_dict
 
 
-def read_data(
-    read_inputs: Dict,
-) -> Dict[str, pd.DataFrame]:
+def read_data(read_inputs: Dict) -> Dict[str, pd.DataFrame]:
     """
     Load data example
     Args:
@@ -64,8 +59,8 @@ def read_data(
     df_dict = _read_check(_cached_filename)
     if df_dict is None:
         df_dict = _read_logic(
-            read_inputs,
-            _cached_filename,
+            read_inputs=read_inputs, 
+            cached_filename=_cached_filename,
         )
         return df_dict
     else:
