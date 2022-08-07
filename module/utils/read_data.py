@@ -12,12 +12,11 @@ def _read_check(
     """
     Load dataset from Bigquery with considering cached_filename
     Args:
-        sql (str): Bigquery sql query
         cached_filename (str): file name
-        force_renew (bool): indicates whether force to read from Bigquery or not
+        cache_path (str): caching path
 
     Returns:
-        pd.DataFrame
+        Optional[pd.DataFrame]
     """
     os.makedirs(cache_path, exist_ok=True)
     try:
@@ -34,7 +33,7 @@ def _read_logic(
     cache_path: str = ".cache/",
 ) -> Dict[str, pd.DataFrame]:
     """
-    Read csv 
+    Read csv
     Args:
         read_inputs (Dict): {"df_name": df_paths, ...}
         cached_filename (str)
