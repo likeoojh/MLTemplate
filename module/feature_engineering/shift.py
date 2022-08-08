@@ -1,12 +1,12 @@
-from typing import List
+from typing import List, Tuple
 import pandas as pd
 
 
 def shift_feature(
-    df: pd.DataFrame, 
-    conti_cols: List[str], 
+    df: pd.DataFrame,
+    conti_cols: List[str],
     intervals: List[int],
-) -> pd.DataFrame:
+) -> Tuple[pd.DataFrame, List[str]]:
     """
     Create shifted continuous feature]
     Args:
@@ -22,4 +22,4 @@ def shift_feature(
         for interval in intervals
     }
     df = df.assign(**df_shift_dict)
-    return df
+    return df, list(df_shift_dict.keys())

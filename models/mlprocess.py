@@ -1,4 +1,4 @@
-from typing import Any, Dict, Tuple, Callable, Union
+from typing import Any, Dict, Tuple, Callable
 import pandas as pd
 
 
@@ -25,7 +25,7 @@ class MLProcess:
         self.pr_input = pr_input
 
     def _feature_engineering(
-        self, 
+        self,
         inputs: pd.DataFrame,
     ) -> pd.DataFrame:
         """
@@ -38,8 +38,8 @@ class MLProcess:
         return None
 
     def _training(
-        self, 
-        inputs: pd.DataFrame, 
+        self,
+        inputs: pd.DataFrame,
         output: pd.Series,
     ) -> Callable:
         """
@@ -53,7 +53,7 @@ class MLProcess:
         return None
 
     def _prediction(
-        self, 
+        self,
         inputs: pd.DataFrame,
     ) -> pd.Series:
         """
@@ -66,7 +66,7 @@ class MLProcess:
         return None
 
     def fit(
-        self, 
+        self,
         inputs: pd.DataFrame,
         output: pd.Series,
     ) -> Tuple[pd.DataFrame, pd.Series, Callable]:
@@ -87,7 +87,7 @@ class MLProcess:
         return _x, _y, _mdl
 
     def predict(
-        self, 
+        self,
         inputs: pd.DataFrame,
     ) -> pd.Series:
         """
@@ -103,6 +103,10 @@ class MLProcess:
 
 
 if __name__ == "__main__":
-    mlprocess = MLProcess(fe_input={}, tr_input={}, pr_input={},)
+    mlprocess = MLProcess(
+        fe_input={},
+        tr_input={},
+        pr_input={},
+    )
     mlprocess.fit(x=None, y=None)
     mlprocess.predict(x=None)

@@ -3,7 +3,8 @@ import pandas as pd
 
 
 def date_feature(
-    df: pd.DataFrame, datetime_colname: str,
+    df: pd.DataFrame,
+    datetime_colname: str,
 ) -> Tuple[pd.DataFrame, List[str]]:
     """
     Create date feature

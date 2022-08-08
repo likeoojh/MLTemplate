@@ -1,4 +1,4 @@
-from typing import List, Dict, Callable
+from typing import List, Dict, Callable, Tuple
 import pandas as pd
 
 
@@ -7,7 +7,7 @@ def groupby_feature(
     category_cols: List[str],
     target_cols: List[str],
     func_dict: Dict[str, Callable],
-) -> pd.DataFrame:
+) -> Tuple[pd.DataFrame, List[str]]:
     """
     Create groupby features
     Args:
@@ -30,4 +30,4 @@ def groupby_feature(
             }
         )
     df = df.assign(**df_groupby_dict)
-    return df
+    return df, list(df_groupby_dict.keys())
