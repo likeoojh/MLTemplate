@@ -30,4 +30,4 @@ def rolling_feature(
             }
         )
     df = df.assign(**df_rolling_dict)
-    return df, df_rolling_dict.keys()
+    return df, list(df_rolling_dict.keys())
