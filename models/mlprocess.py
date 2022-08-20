@@ -1,14 +1,18 @@
-from typing import Any, Dict, Tuple, Callable
+from typing import Any, Dict, Callable
 import pandas as pd
+from models.load_data import load_data
+from models.feature_engineering import feature_engineering
+from models.training import training
+from models.prediction import prediction
 
 
-class MLProcess:
+class BaselineMLProcess:
     """
     Define MLprocess in general
     Attributes:
+        ld_input (Dict[str, Any]): load input
         fe_input (Dict[str, Any]): feature engineering inputs
         tr_input (Dict[str, Any]): training inputs
-        pr_input (Dict[str, Any]): prediction inputs
     Methods:
         fit(inputs, output): run entire process and return transformed (data, outputs, model)
         predict(inputs): return predicted value with inputs
@@ -16,97 +20,71 @@ class MLProcess:
 
     def __init__(
         self,
+        ld_input: Dict[str, Any],
         fe_input: Dict[str, Any],
         tr_input: Dict[str, Any],
-        pr_input: Dict[str, Any],
     ):
+        self.ld_input = ld_input
         self.fe_input = fe_input
         self.tr_input = tr_input
-        self.pr_input = pr_input
 
-    def _feature_engineering(
-        self,
-        inputs: pd.DataFrame,
-    ) -> pd.DataFrame:
+        self.target_cols = fe_input["target_cols"]
+        self.train_df, self.test_df = load_data(ld_input)
+
+    def _feature_engineering(self) -> Dict[str, Any]:
         """
-        Feature engineering for given inputs
-        Args:
-            inputs (pd.DataFrame): train dataset
+        Feature engineering
         Returns:
-            pd.DataFrame: transformed inputs
+            Dict[str, Any]
         """
-        return None
+        _fe_output_dict = feature_engineering(
+            train_df=self.train_df,
+            test_df=self.test_df,
+            category_cols=self.fe_input["category_cols"],
+            target_cols=self.fe_input["target_cols"],
+        )
+        self.train_refined_df = _fe_output_dict["train_df"]
+        self.test_refined_df = _fe_output_dict["test_df"]
+        self.label_map = _fe_output_dict["label_map"]
+        return _fe_output_dict
 
-    def _training(
-        self,
-        inputs: pd.DataFrame,
-        output: pd.Series,
-    ) -> Callable:
+    def _training(self) -> Dict[str, Callable]:
         """
-        Train model for given inputs and output
-        Args:
-            inputs (pd.DataFrame): train dataset
-            output (pd.Series): train output
+        Trainining model
         Returns:
-            Callable: model object
+            Dict[str, Callable]
         """
-        return None
+        self.mdls = training(
+            train_df=self.train_refined_df,
+            target_cols=self.target_cols,
+            frac_ratio=self.tr_input["frac_ratio"],
+            id_col=self.tr_input["id_col"],
+            hp_tune_trials=self.tr_input["hp_tune_trials"],
+        )
+        return self.mdls
 
-    def _prediction(
-        self,
-        inputs: pd.DataFrame,
-    ) -> pd.Series:
+    def _prediction(self) -> Dict[str, pd.Series]:
         """
         Predict for given inputs including new data
-        Args:
-            inputs (pd.DataFrame): dataset
         Returns:
-            pd.Series: predicted value
+            Dict[str, pd.Series]: predicted value
         """
-        return None
+        self.preds = prediction(test_df=self.test_refined_df, mdls=self.mdls)
+        return self.preds
 
     def fit(
         self,
-        inputs: pd.DataFrame,
-        output: pd.Series,
-    ) -> Tuple[pd.DataFrame, pd.Series, Callable]:
+    ) -> Dict[str, Any]:
         """
         Model fit
-        Args:
-            inputs (pd.DataFrame)
-            outpus (pd.Series)
         Returns:
-            (pd.DataFrmae, pd.Series, Callable): transformed data, predicted value, model object
+            Dict[str, Any]
         """
-        _x = self._feature_engineering(inputs=inputs)
-        _mdl = self._training(inputs=_x, output=output)
-        _y = self._prediction(inputs=_x)
-        self._x = _x
-        self._mdl = _mdl
-        self._y = _y
-        return _x, _y, _mdl
-
-    def predict(
-        self,
-        inputs: pd.DataFrame,
-    ) -> pd.Series:
-        """
-        Predict value
-        Args:
-            inputs (pd.DataFrame)
-        Returns
-            pd.Series
-        """
-        _x = self._feature_engineering(inputs)
-        outputs = self._mdl.predict(_x)
-        return outputs
-
-
-if __name__ == "__main__":
-    mlprocess = MLProcess(
-        fe_input={},
-        tr_input={},
-        pr_input={},
-    )
-    mlprocess.fit(x=None, y=None)
-    mlprocess.predict(x=None)
+        fe_output = self._feature_engineering(self)
+        tr_output = self._training(self)
+        pr_output = self._prediction(self)
+        return {
+            "fe_output": fe_output,
+            "tr_output": tr_output,
+            "pr_output": pr_output,
+        }
