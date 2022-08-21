@@ -1,5 +1,5 @@
 import numpy as np
-from models.mlprocess import BaselineMLProcess
+from models.baseline.model import BaselineModel
 
 
 ld_input = {
@@ -20,7 +20,7 @@ tr_input = {
     "hp_tune_trials": 3,
 }
 
-mlprocess = BaselineMLProcess(
+mlprocess = BaselineModel(
     ld_input=ld_input,
     fe_input=fe_input,
     tr_input=tr_input,
