@@ -1,12 +1,12 @@
 from typing import Any, Dict, Callable
 import pandas as pd
-from models.load_data import load_data
-from models.feature_engineering import feature_engineering
-from models.training import training
-from models.prediction import prediction
+from models.baseline.load_data import load_data
+from models.baseline.feature_engineering import feature_engineering
+from models.baseline.training import training
+from models.baseline.prediction import prediction
 
 
-class BaselineMLProcess:
+class BaselineModel:
     """
     Define MLprocess in general
     Attributes:
