@@ -5,3 +5,4 @@ scikit-learn==1.1.2
 lightgbm==3.3.2
 prophet==1.1
 optuna==2.10.1
+pre_commit==2.20.0
