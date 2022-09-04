@@ -1,8 +1,7 @@
 pytest==7.1.2
+pre_commit==2.20.0
 pandas==1.4.3
 numpy==1.23.1
 scikit-learn==1.1.2
 lightgbm==3.3.2
-prophet==1.1
 optuna==2.10.1
-pre_commit==2.20.0
