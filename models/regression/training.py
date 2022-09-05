@@ -2,7 +2,7 @@ from typing import List, Dict, Callable
 import pandas as pd
 import optuna
 import lightgbm as lgb
-from module.training.objective import optuna_objective
+from module.training.objective import optuna_regression_objective
 
 
 def training(
@@ -37,7 +37,7 @@ def training(
         _valid_y_df = _valid_df[target_col]
 
         def hp_tune(trial):
-            return optuna_objective(
+            return optuna_regression_objective(
                 trial,
                 train_x=_train_x_df,
                 train_y=_train_y_df,
@@ -48,8 +48,8 @@ def training(
         study = optuna.create_study(direction="minimize")
         study.optimize(hp_tune, n_trials=hp_tune_trials)
         opt_params = {
-            "objective": "binary",
-            "metric": "binary",
+            "objective": "rmse",
+            "metric": "rmse",
             "verbosity": -1,
             "boosting_type": "gbdt",
         }
