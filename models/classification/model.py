@@ -1,9 +1,9 @@
 from typing import Any, Dict, Callable
 import pandas as pd
-from models.baseline_classification.load_data import load_data
-from models.baseline_classification.feature_engineering import feature_engineering
-from models.baseline_classification.training import training
-from models.baseline_classification.prediction import prediction
+from models.classification.load_data import load_data
+from models.classification.feature_engineering import feature_engineering
+from models.classification.training import training
+from models.classification.prediction import prediction
 
 
 class BaselineClassificationModel:
