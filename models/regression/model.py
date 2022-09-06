@@ -1,12 +1,14 @@
 from typing import Any, Dict, Callable
 import pandas as pd
+from module.utils.model import NoBrainnerModel
 from models.regression.load_data import load_data
 from models.regression.feature_engineering import feature_engineering
 from models.regression.training import training
 from models.regression.prediction import prediction
+from module.utils.model import NoBrainnerModel
 
 
-class BaselineRegressionModel:
+class BaselineRegressionModel(NoBrainnerModel):
     """
     Define MLprocess in general
     Attributes:
