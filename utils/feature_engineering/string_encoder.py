@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
 
-class LGBMLabelEncoder(object):
+class LGBMLabelEncoder:
     """
     Label Encoder for LGBM
     """

@@ -2,7 +2,7 @@ import os
 from typing import Dict, Optional
 import pandas as pd
 import pickle
-from module.utils.common import object_hash
+from utils.common.common import object_hash
 
 
 def _read_check(

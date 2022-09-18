@@ -1,9 +1,9 @@
 from typing import List, Dict, Any, Callable
 import pandas as pd
 
-from module.utils.common import normalize_list
-from module.feature_engineering.groupby import groupby_feature
-from module.feature_engineering.string_encoder import (
+from utils.common import normalize_list
+from utils.feature_engineering import (
+    groupby_feature,
     create_label_map,
     transform_categorical_cols,
 )

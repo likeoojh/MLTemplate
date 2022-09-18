@@ -1,6 +1,6 @@
 from typing import Any, Dict, Callable
 import pandas as pd
-from module.utils.model import NoBrainnerModel
+from utils.schemas.model import NoBrainnerModel
 from models.classification.load_data import load_data
 from models.classification.feature_engineering import feature_engineering
 from models.classification.training import training

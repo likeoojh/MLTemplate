@@ -2,7 +2,7 @@ from typing import List, Dict, Callable
 import pandas as pd
 import optuna
 import lightgbm as lgb
-from module.training.objective import optuna_regression_objective
+from utils.training import optuna_regression_objective
 
 
 def training(

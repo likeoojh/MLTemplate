@@ -1,6 +1,6 @@
 from typing import Dict, List, Tuple
 import pandas as pd
-from module.utils.read_data import read_data
+from utils.load import read_data
 
 
 def load_data(
