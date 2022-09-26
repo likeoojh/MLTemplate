@@ -1,7 +1,5 @@
-# About
-
-This is a small template for ML. \
-Please leave bug report or request in [Issues](https://github.com/RektPunk/MLTemplate/issues).
+# MLTemplate
+This is a small template for ML.
 
 
 # Getting Started
