@@ -1,5 +1,5 @@
 # MLTemplate
-This is a small template for ML.
+A small template for ML.
 
 
 # Getting Started
