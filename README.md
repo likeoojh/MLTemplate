@@ -2,7 +2,7 @@
 A small template for ML.
 
 
-# Getting Started
+### Getting Started
 1. Clone the repo
 ```
 git clone https://github.com/RektPunk/MLTemplate.git
